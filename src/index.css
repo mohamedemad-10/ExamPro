@@ -1,0 +1,132 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* Dark theme base - futuristic tech aesthetic */
+    --background: 222 47% 7%;
+    --foreground: 210 40% 98%;
+
+    --card: 222 47% 11%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+
+    /* Neon cyan primary */
+    --primary: 191 100% 50%;
+    --primary-foreground: 222 47% 11%;
+
+    /* Purple secondary */
+    --secondary: 270 70% 60%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 270 70% 60%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217 32% 20%;
+    --input: 217 32% 17%;
+    --ring: 191 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Glassmorphism effects */
+    --glass-bg: rgba(17, 24, 39, 0.7);
+    --glass-border: rgba(96, 165, 250, 0.2);
+    
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(191 100% 50%) 0%, hsl(270 70% 60%) 100%);
+    --gradient-subtle: linear-gradient(180deg, hsl(222 47% 11%) 0%, hsl(222 47% 7%) 100%);
+    
+    /* Glow effects */
+    --glow-cyan: 0 0 20px hsla(191 100% 50% / 0.3), 0 0 40px hsla(191 100% 50% / 0.1);
+    --glow-purple: 0 0 20px hsla(270 70% 60% / 0.3), 0 0 40px hsla(270 70% 60% / 0.1);
+    
+    /* Animations */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+  }
+}
+
+@layer components {
+  /* Glassmorphism card */
+  .glass-card {
+    @apply backdrop-blur-xl bg-card/70 border border-border/50 rounded-xl shadow-2xl;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  /* Neon glow button */
+  .btn-glow {
+    @apply relative overflow-hidden;
+    box-shadow: var(--glow-cyan);
+    transition: var(--transition-smooth);
+  }
+
+  .btn-glow:hover {
+    box-shadow: 0 0 30px hsla(191 100% 50% / 0.5), 0 0 60px hsla(191 100% 50% / 0.2);
+    transform: translateY(-2px);
+  }
+
+  /* Animated background */
+  .animated-bg {
+    background: linear-gradient(135deg, hsl(222 47% 7%) 0%, hsl(222 47% 11%) 50%, hsl(222 47% 7%) 100%);
+    background-size: 200% 200%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Floating animation */
+  .float-animation {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  /* Pulse glow */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 20px hsla(191 100% 50% / 0.3); }
+    50% { box-shadow: 0 0 40px hsla(191 100% 50% / 0.6), 0 0 60px hsla(270 70% 60% / 0.4); }
+  }
+}
